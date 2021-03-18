@@ -1,0 +1,17 @@
+{
+  "name": "myzap",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/pablords/myzap.git",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.7",
+    "sequelize": "^6.5.1",
+    "venom-bot": "^3.0.10"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
