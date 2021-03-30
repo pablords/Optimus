@@ -19,15 +19,15 @@ class SenderController {
 
             await client
                 .sendText(`55${request.params.phone}@c.us`,
-                    `Olá cliente, tudo bem?
+                    `Olá, tudo bem?
                  responda SIM 
                  para receber um manual que contem informaçöes importantes de funcionamento do seu roteador
                  caso nåo queira receber, responda NAO`
                 )
                 .then((result) => {
-                  console.log(result)
+                    console.log(result)
                     client.onMessage(async (message) => {
-                        switch (message.body) {
+                        switch (String(message.body).toUpperCase()) {
                             case "SIM":
                                 await client
                                     .sendFile(
@@ -38,6 +38,13 @@ class SenderController {
                                     )
                                 break;
                             case "NAO":
+                                await client
+                                    .sendText(
+                                        message.from,
+                                        `Ok ${message.sender.pushname}, estarei aqui a disposiçao quando precisar, até mais!`
+                                    )
+                                break;
+                            case "NÁO":
                                 await client
                                     .sendText(
                                         message.from,
@@ -56,13 +63,13 @@ class SenderController {
                         }
 
                     })
-                    .then((result) => {
-                        console.log(result)
+                        .then((result) => {
+                            console.log(result)
 
-                    })
-                    .catch((erro) => {
-                        console.error(erro)
-                    });
+                        })
+                        .catch((erro) => {
+                            console.error(erro)
+                        });
 
                 })
                 .catch((erro) => {
