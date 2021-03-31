@@ -16,12 +16,20 @@ var stages = {
         obj: require("../stages/3"),
     },
     4: {
-        descricao: "Instancia",
+        descricao: "CPF",
         obj: require("../stages/4"),
     },
     5: {
-        descricao: "CHAMADA API",
+        descricao: "CONFIRMAR CPF",
         obj: require("../stages/5"),
+    },
+    6: {
+        descricao: "CHAMADA API",
+        obj: require("../stages/6"),
+    },
+    7: {
+        descricao: "ENCERRAMENTO",
+        obj: require("../stages/7"),
     },
   
   

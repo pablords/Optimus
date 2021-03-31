@@ -3,7 +3,6 @@ const sub = require('../Menu/subMenu')
 const { db } = require("../Models/banco");
 
 function execute(user, msg) {
-    //console.log(db[user])
 
     let menu = " MENU PRINCIPAL\n\n";
     Object.keys(menu0).forEach((value) => {
@@ -16,7 +15,8 @@ function execute(user, msg) {
             stage: 1,
             menu: [],
             subMenu: [],
-            cpf: []
+            cpf: [],
+            cidade: []
         };
         return [
             menu
@@ -27,7 +27,7 @@ function execute(user, msg) {
     if (msg >= "") {
         db[user].cpf.push({ document: msg })
         db[user].stage = 5;
-        return ["Foi aberto um atendimento para voce."];
+        return ["por gentileza, confirme o *CPF* do titular"];
     } 
 
 

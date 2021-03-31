@@ -9,9 +9,9 @@ const Api = axios.create({
 module.exports = {
   getMobilePhone: async (data) => {
 
-    const res = await Api.post('/whats-app/getContact', data)
+    await Api.post('/whats-app/getContact', data)
       .then((res) => {
-        return res.data
+        return res
       }).catch((err) => {
         console.log(err)
       })

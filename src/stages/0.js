@@ -1,4 +1,4 @@
-const api = require('../../services/api')
+
 const { menu0 } = require("../Menu/menu0");
 const { db } = require("../Models/banco");
 
@@ -17,16 +17,7 @@ function execute(user, msg, contato) {
 
     db[user].stage = 1;
 
-    /*const data = {
-        name: res.to.pushname,
-        mobilePhone: res.to.remote.user
-    }
-    sendClient(data)
-
-    async function sendClient(data) {
-        await api.getMobilePhone(data)
-
-    }*/
+  
 
 
     let menu = " MENU PRINCIPAL \n\n";

@@ -44,7 +44,8 @@ function getStage(user) {
             stage: 0,
             menu: [],
             subMenu: [],
-            cpf: []
+            cpf: [],
+            cidade: []
         };
         return db[user].stage;
     }

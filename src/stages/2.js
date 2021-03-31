@@ -3,7 +3,7 @@ const sub = require('../Menu/subMenu')
 const { db } = require("../Models/banco");
 
 function execute(user, msg) {
-    console.log(msg)
+
 
     const select = db[user].menu[0]
   
@@ -15,19 +15,18 @@ function execute(user, msg) {
 
 
     if (msg === "*") {
-        console.log("voltou")
         db[user] = {
             stage: 1,
             menu: [],
             subMenu: [],
-            cpf: []
+            cpf: [],
+            cidade: []
         };
         return [menu];
     }
 
 
     if (sub[select.id][msg]) {
-        console.log("passou")
         db[user].subMenu.push(sub[select.id][msg])
         db[user].stage = 3;
         return [
@@ -37,7 +36,6 @@ function execute(user, msg) {
     }
 
     if (!sub[msg]) {
-        console.log("invalido")
         return [
             "```Digite uma das opcoes ou * para retornar ao menu inicial```",
             "Código inválido, digite corretamente"

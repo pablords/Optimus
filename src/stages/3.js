@@ -3,9 +3,7 @@ const sub = require('../Menu/subMenu')
 const { db } = require("../Models/banco");
 
 function execute(user, msg) {
-    console.log(msg)
     if (!msg == "#" || !msg == "*") {
-        console.log("diferente")
         return [
             "```Digite # para confirmar ou * para retornar ao menu inicial```",
             "Código inválido, digite corretamente"
@@ -19,12 +17,12 @@ function execute(user, msg) {
     });
 
     if (msg === "*") {
-        console.log("voltou pro inicio")
         db[user] = {
             stage: 1,
             menu: [],
             subMenu: [],
-            cpf: []
+            cpf: [],
+            cidade: []
         };
         return [
             menu
@@ -33,9 +31,8 @@ function execute(user, msg) {
 
 
     if (msg == "#") {
-        console.log("ok")
         db[user].stage = 4;
-        return ["por gentileza, informe o numero de sua *LINHA TELEFONICA* ou *CPF*"];
+        return ["por gentileza, informe o *CPF* do titular"];
     }
 
 
