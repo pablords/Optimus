@@ -13,7 +13,7 @@ function execute(user, msg, contato) {
     let cidade = " SELECIONE SUA CIDADE\n\n";
     Object.keys(cidades).forEach((value) => {
         let element = cidades[value];
-        cidade += `${value} - ${element.name}   ${element.supervisor} \n`;
+        cidade += `${value} - ${element.name}  \n`;
     })
 
     switch (msg) {

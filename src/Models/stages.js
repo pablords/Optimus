@@ -26,13 +26,7 @@ var stages = {
     6: {
         descricao: "CHAMADA API",
         obj: require("../stages/6"),
-    },
-    7: {
-        descricao: "ENCERRAMENTO",
-        obj: require("../stages/7"),
-    },
-  
-  
+    },  
   
 };
 

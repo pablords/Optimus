@@ -1,10 +1,13 @@
 const { menu0 } = require('../Menu/menu0')
 const { cidades } = require('../Menu/cidades')
 const { db } = require("../Models/banco");
-const api = require('../../services/api')
+const Api = require('../../services/api')
+const venom = require('venom-bot')
 
 
-function execute(user, msg, contato) {
+
+
+function execute(user, msg, nome, client) {
 
     let menu = " MENU PRINCIPAL\n\n";
     Object.keys(menu0).forEach((value) => {
@@ -31,7 +34,7 @@ function execute(user, msg, contato) {
 
     if (cidades[msg]) {
         const data = {
-            name: contato,
+            name: nome,
             mobilePhone: user,
             cpf: db[user].cpf[0].document,
             cidade: cidades[msg].name,
@@ -39,25 +42,54 @@ function execute(user, msg, contato) {
             subType: db[user].subMenu[0].name,
             description: db[user].subMenu[0].description
         }
-        sendClient(data)
-
         //db[user].stage = 7;
-        return [`Aguarde, já estou solicitando um atendimento Técnico para voce ${contato}`];
+        client.sendText(user, `Aguarde ${nome}, já estou solicitando um atendimento Técnico para voce...`)
+            .then((res) => {
+                sendClient(data)
+            })
+
+
 
         async function sendClient(data) {
-            const res = await api.getMobilePhone(data)
-            if (res) {
-                db[user].stage = 0;
-                return [
-                    `Pronto ${contato}, sua solicitacao foi executada, em até 24h o técnico irá até sua residencia`
-                ];
-    
-            }
-            console.log(res)
+            await Api.post('/whats-app/getContact', data)
+                .then((res) => {
+                    if (res.status == 200) {
+                        db[user].stage = 0;
+
+                        const mensagem = [
+                            `Pronto ${nome}, sua solicitacao foi executada
+                            Em até 24h o técnico irá até sua residencia ID: ${res.data.id}`
+                        ];
+
+                        finalizado(user, mensagem[0])
+
+                    }
+                }).catch((err) => {
+                    console.log(err)
+                    return [
+                        `Houve um erro, nao foi possivel abrir sua solicitacao`
+                    ];
+                })
+
         }
+
+
     }
 
-   
+    function finalizado(contato, mensagem) {
+        client.sendText(contato, mensagem)
+            .then((res) => {
+                //console.log(res.to._serialized)
+                client.forwardMessages(
+                    contato,
+                    [res.to._serialized]
+                )
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
 
 
 

@@ -4,11 +4,11 @@ const port = 3001
 
 
 server.use(express.json());
-const routes = require('./src/routes/routes');
+const routes = require('./src/routes/routes')
 server.use('/', routes);
 
 const { step } = require('./src/Models/stages')
-const { db } = require("./src/Models/banco");
+const { db } = require("./src/Models/banco")
 
 
 const venom = require('venom-bot')
@@ -26,11 +26,12 @@ function start(client) {
         let resp = step[getStage(message.from)].obj.execute(
             message.from,
             message.body,
-            message.sender.pushname
+            message.sender.pushname,
+            client
         );
         for (let index = 0; index < resp.length; index++) {
             const element = resp[index];
-            //console.log(element)
+            console.log(element)
             client.sendText(message.from, element);
         }
     });
