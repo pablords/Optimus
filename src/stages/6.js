@@ -2,7 +2,7 @@ const { menu0 } = require('../Menu/menu0')
 const { cidades } = require('../Menu/cidades')
 const { db } = require("../Models/banco");
 const Api = require('../../services/api')
-const venom = require('venom-bot')
+
 
 
 
@@ -45,30 +45,37 @@ function execute(user, msg, nome, client) {
         //db[user].stage = 7;
         client.sendText(user, `Aguarde ${nome}, já estou solicitando um atendimento Técnico para voce...`)
             .then((res) => {
-                sendClient(data)
+                sendClient(data, cidades[msg])
             })
 
 
 
-        async function sendClient(data) {
+        async function sendClient(data, cidade) {
             await Api.post('/whats-app/getContact', data)
                 .then((res) => {
                     if (res.status == 200) {
-                        db[user].stage = 0;
+                        db[user] = {
+                            stage: 0,
+                            menu: [],
+                            subMenu: [],
+                            cpf: [],
+                            cidade: []
+                        };
 
                         const mensagem = [
                             `Pronto ${nome}, sua solicitacao foi executada
                             Em até 24h o técnico irá até sua residencia ID: ${res.data.id}`
                         ];
 
-                        finalizado(user, mensagem[0])
+                        finalizado(user, mensagem[0], cidade)
 
                     }
                 }).catch((err) => {
                     console.log(err)
-                    return [
-                        `Houve um erro, nao foi possivel abrir sua solicitacao`
-                    ];
+                    const erro = [
+                        `Olá ${cidade.supervisor}, um cliente de sua cidade entrou em contato mas nao foi possivel abrir um atendimento`
+                    ]
+                    client.sendText(cidade.contato, erro[0])
                 })
 
         }
@@ -76,12 +83,12 @@ function execute(user, msg, nome, client) {
 
     }
 
-    function finalizado(contato, mensagem) {
+    function finalizado(contato, mensagem, cidade) {
         client.sendText(contato, mensagem)
             .then((res) => {
                 //console.log(res.to._serialized)
                 client.forwardMessages(
-                    contato,
+                    cidade.contato,
                     [res.to._serialized]
                 )
             })
