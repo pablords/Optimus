@@ -11,8 +11,8 @@ function execute(user, msg, nome, client, message) {
 
     if (message.type == "ptt") {
         return [
-            `Olá ${nome}, Sou um robõ e ainda não consigo interpretar mensagem de audio,\n`,
             "```Digite uma das opcoes ou * para retornar ao menu inicial```",
+            `Olá ${nome}, Sou um robõ e ainda não consigo interpretar mensagem de audio,\n`,
         ]
     }
 
@@ -73,16 +73,18 @@ function execute(user, msg, nome, client, message) {
                         var year = data.getFullYear();
                         var hora = data.getHours();          // 0-23
                         var min = data.getMinutes();
-                        let dataFormatada = `${day}/${month}/${year} ${hora}:${min}`;
+                        var seg = data.getSeconds(); 
+                        let dataFormatada = `${day}/${month}/${year} ${hora}:${min}${seg}`;
 
                         const mensagem = [
-                            `Pronto ${nome}, sua solicitacao foi executada.
-                            Em até 24h o técnico irá até sua residencia ID: ${res.data.id}
-                            DATA SOLICITACAO: ${dataFormatada}
-                            `
+                            `Pronto ${nome}, sua solicitacao foi executada.`,
+                            `Em até 24h o técnico irá até sua residencia.`,
+                            `ID: ${res.data.id}`,
+                            `DATA SOLICITACAO: ${dataFormatada}`,
+                            `CIDADE: ${cidade.name}`
                         ];
 
-                        finalizado(user, mensagem[0], cidade)
+                        finalizado(user, mensagem, cidade)
 
                     }
                 }).catch((err) => {
@@ -95,7 +97,7 @@ function execute(user, msg, nome, client, message) {
                     };
                     console.log(err)
                     const erro = [
-                        `Olá ${cidade.supervisor}, o cliente ${nome} - ${user.substring(2, 12)} de sua cidade entrou em contato mas nao foi possivel abrir um atendimento`
+                        `Olá ${cidade.supervisor}, o cliente ${nome} - ${user.substring(2, 12)} da cidade ${cidade.name}entrou em contato mas nao foi possivel abrir um atendimento`
                     ]
                     client.sendText(cidade.contato, erro[0])
                     client.sendText(user, "Enviamos sua solicitacao para o supervisor responsavel e logo entraremos em contato.")
@@ -107,7 +109,10 @@ function execute(user, msg, nome, client, message) {
     }
 
     function finalizado(contato, mensagem, cidade) {
-        client.sendText(contato, mensagem)
+        for (let index = 0; index < mensagem.length; index++) {
+            const element = mensagem[index];
+            console.log(element)
+            client.sendText(contato, element)
             .then((res) => {
                 //console.log(res.to._serialized)
                 client.forwardMessages(
@@ -118,6 +123,8 @@ function execute(user, msg, nome, client, message) {
             .catch((err) => {
                 console.log(err)
             })
+        }
+    
 
     }
 

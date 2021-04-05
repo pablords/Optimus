@@ -6,9 +6,8 @@ function execute(user, msg, contato, client, message) {
 
     if(message.type =="ptt"){
         return [
-            `Olá ${contato}, Sou um robõ e ainda não consigo interpretar audio,\n
-            Por gentileza selecione uma das opcoes
-            `
+            "Por gentileza selecione uma das opcoes",
+            `Olá ${contato}, Sou um robõ e ainda não consigo interpretar audio`,
         ]
     }
 
