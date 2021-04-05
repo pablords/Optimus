@@ -5,6 +5,8 @@ const { db } = require("../Models/banco");
 
 function execute(user, msg, contato) {
     // Obtem a hora atual do PC para definir se vai ser Bom dia, tarde ou noite.
+
+ 
     stamp = new Date();
     hours = stamp.getHours();
     if (hours >= 18 && hours < 24) {

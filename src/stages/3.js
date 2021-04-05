@@ -2,7 +2,15 @@ const { menu0 } = require('../Menu/menu0')
 const sub = require('../Menu/subMenu')
 const { db } = require("../Models/banco");
 
-function execute(user, msg) {
+function execute(user, msg, contato, client, message) {
+
+    if (message.type == "ptt") {
+        return [
+            `Olá ${contato}, Sou um robõ e ainda não consigo interpretar mensagem de audio,\n`,
+            "```Digite uma das opcoes ou * para retornar ao menu inicial```",
+        ]
+    }
+    
     if (!msg == "#" || !msg == "*") {
         return [
             "```Digite # para confirmar ou * para retornar ao menu inicial```",
@@ -32,7 +40,7 @@ function execute(user, msg) {
 
     if (msg == "#") {
         db[user].stage = 4;
-        return ["por gentileza, informe o *CPF* do titular"];
+        return ["por gentileza, informe o *CPF* ou numero da *LINHA* do titular"];
     }
 
 

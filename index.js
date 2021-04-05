@@ -27,11 +27,12 @@ function start(client) {
             message.from,
             message.body,
             message.sender.pushname,
-            client
+            client,
+            message
         );
         for (let index = 0; index < resp.length; index++) {
             const element = resp[index];
-            console.log(element)
+            //console.log(element)
             client.sendText(message.from, element);
         }
     });

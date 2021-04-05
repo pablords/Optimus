@@ -2,8 +2,14 @@ const { menu0 } = require('../Menu/menu0')
 const sub = require('../Menu/subMenu')
 const { db } = require("../Models/banco");
 
-function execute(user, msg) {
+function execute(user, msg, contato, client, message) {
 
+    if(message.type =="ptt"){
+        return [
+            `Olá ${contato}, Sou um robõ e ainda não consigo interpretar mensagem de audio,\n`,
+            "```Digite uma das opcoes ou * para retornar ao menu inicial```",
+        ]
+    }
 
     const select = db[user].menu[0]
   

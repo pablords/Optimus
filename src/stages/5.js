@@ -2,7 +2,14 @@ const { menu0 } = require('../Menu/menu0')
 const { cidades } = require('../Menu/cidades')
 const { db } = require("../Models/banco");
 
-function execute(user, msg, contato) {
+function execute(user, msg, contato, client, message) {
+
+    if(message.type =="ptt"){
+        return [
+            `Olá ${contato}, Sou um robõ e ainda não consigo interpretar mensagem de audio,\n`,
+            "```Digite uma das opcoes ou * para retornar ao menu inicial```",
+        ]
+    }
 
     let menu = " MENU PRINCIPAL\n\n";
     Object.keys(menu0).forEach((value) => {

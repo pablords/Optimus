@@ -3,17 +3,17 @@ const options = {
     1: {
       title: "ÏNTERNET",
       name: "VELOCIDADE FORA DO PADRAO",
-      description: "internet lenta, dificuldade na navegacao",
+      description: "Internet lenta, dificuldade na navegacao",
     },
     2: {
       title: "ÏNTERNET",
       name: "QUEDAS",
-      description: "quedas de conexao",
+      description: "Quedas de conexao",
     },
     3: {
-      title: "ÏNTERNET",
+      title: "INTERNET",
       name: "NAO NAVEGA",
-      description: "nao abre site ou app nenhum",
+      description: "Nao abre site ou app nenhum",
     }
   },
 
@@ -21,17 +21,17 @@ const options = {
     1: {
       title: "LINHA",
       name: "LINHA MUDA",
-      description: "náo faz e nem recebe ligacoes",
+      description: "Nao faz e nem recebe ligacoes",
     },
     2: {
       title: "LINHA",
       name: "NUMEROS ESPECIFICOS",
-      description: "nao faz ou nao recbe de numeros especificos",
+      description: "Nao faz ou nao recbe de numeros especificos",
     },
     3: {
       title: "LINHA",
       name: "CHIADO NA LINHA",
-      description: "qualidade ruim na ligacao",
+      description: "Qualidade ruim na ligacao",
     }
   },
 
@@ -39,17 +39,17 @@ const options = {
     1: {
       title: "TV",
       name: "TV SEM SINAL",
-      description: "nao funciona canal nenhum",
+      description: "Nao funciona nenhum canal",
     },
     2: {
       title: "TV",
       name: "TV QUADRICULANDO",
-      description: "qualidade ruim na imagem",
+      description: "Qualidade ruim na imagem",
     },
     3: {
       title: "TV",
       name: "TV CANAIS ESPECIFICOS",
-      description: "nao funciona canais especificos",
+      description: "Nao funciona canais especificos",
     }
   }
 

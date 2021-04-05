@@ -2,7 +2,15 @@ const { menu0 } = require('../Menu/menu0')
 const sub = require('../Menu/subMenu')
 const { db } = require("../Models/banco");
 
-function execute(user, msg) {
+function execute(user, msg, contato, client, message) {
+
+    if(message.type =="ptt"){
+        return [
+            `Olá ${contato}, Sou um robõ e ainda não consigo interpretar audio,\n
+            Por gentileza selecione uma das opcoes
+            `
+        ]
+    }
 
     if (!menu0[msg]) {
         return [

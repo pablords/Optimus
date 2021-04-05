@@ -1,13 +1,20 @@
 const { menu0 } = require('../Menu/menu0')
 const { cidades } = require('../Menu/cidades')
-const { db } = require("../Models/banco");
+const { db } = require("../Models/banco")
 const Api = require('../../services/api')
 
 
 
 
 
-function execute(user, msg, nome, client) {
+function execute(user, msg, nome, client, message) {
+
+    if (message.type == "ptt") {
+        return [
+            `Olá ${nome}, Sou um robõ e ainda não consigo interpretar mensagem de audio,\n`,
+            "```Digite uma das opcoes ou * para retornar ao menu inicial```",
+        ]
+    }
 
     let menu = " MENU PRINCIPAL\n\n";
     Object.keys(menu0).forEach((value) => {
@@ -27,8 +34,6 @@ function execute(user, msg, nome, client) {
             menu
         ];
     }
-
-
 
 
 
@@ -62,20 +67,38 @@ function execute(user, msg, nome, client) {
                             cidade: []
                         };
 
+                        let data = new Date(res.data.created_at);
+                        var day = data.getDate();
+                        var month = data.getMonth() + 1;
+                        var year = data.getFullYear();
+                        var hora = data.getHours();          // 0-23
+                        var min = data.getMinutes();
+                        let dataFormatada = `${day}/${month}/${year} ${hora}:${min}`;
+
                         const mensagem = [
-                            `Pronto ${nome}, sua solicitacao foi executada
-                            Em até 24h o técnico irá até sua residencia ID: ${res.data.id}`
+                            `Pronto ${nome}, sua solicitacao foi executada.
+                            Em até 24h o técnico irá até sua residencia ID: ${res.data.id}
+                            DATA SOLICITACAO: ${dataFormatada}
+                            `
                         ];
 
                         finalizado(user, mensagem[0], cidade)
 
                     }
                 }).catch((err) => {
+                    db[user] = {
+                        stage: 0,
+                        menu: [],
+                        subMenu: [],
+                        cpf: [],
+                        cidade: []
+                    };
                     console.log(err)
                     const erro = [
-                        `Olá ${cidade.supervisor}, um cliente de sua cidade entrou em contato mas nao foi possivel abrir um atendimento`
+                        `Olá ${cidade.supervisor}, o cliente ${nome} - ${user.substring(2, 12)} de sua cidade entrou em contato mas nao foi possivel abrir um atendimento`
                     ]
                     client.sendText(cidade.contato, erro[0])
+                    client.sendText(user, "Enviamos sua solicitacao para o supervisor responsavel e logo entraremos em contato.")
                 })
 
         }

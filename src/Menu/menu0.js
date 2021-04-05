@@ -2,17 +2,17 @@ const opcoes0 = {
   1: {
     id: 1,
     name: "INTERNET",
-    description: "problemas com navegacao/quedas/velocidade",
+    description: "Problemas com navegacao/quedas/velocidade",
   },
   2: {
     id: 2,
     name: "LINHA",
-    description: "problemas com linha",
+    description: "Problemas com linha telefonica",
   },
   3: {
     id: 3,
     name: "TV",
-    description: "problemas com tv",
+    description: "Problemas com tv",
   }
 };
 
