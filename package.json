@@ -1,8 +1,8 @@
 {
-  "name": "myzap",
+  "name": "optimus",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/pablords/myzap.git",
+  "repository": "https://github.com/pablords/optimus.git",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.1",
