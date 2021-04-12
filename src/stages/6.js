@@ -56,7 +56,7 @@ function execute(user, msg, nome, client, message) {
 
 
         async function sendClient(data, cidade) {
-            await Api.post('/whats-app/getContact', data)
+            await Api.post('/whats-app/store', data)
                 .then((res) => {
                     if (res.status == 200) {
                         db[user] = {
@@ -73,18 +73,19 @@ function execute(user, msg, nome, client, message) {
                         var year = data.getFullYear();
                         var hora = data.getHours();          // 0-23
                         var min = data.getMinutes();
-                        var seg = data.getSeconds(); 
+                        var seg = data.getSeconds();
                         let dataFormatada = `${day}/${month}/${year} ${hora}:${min}${seg}`;
 
                         const mensagem = [
-                            `Pronto ${nome}, sua solicitacao foi executada.`,
-                            `Em até 24h o técnico irá até sua residencia.`,
-                            `ID: ${res.data.id}`,
-                            `DATA SOLICITACAO: ${dataFormatada}`,
-                            `CIDADE: ${cidade.name}`
+                            `Pronto ${nome}, sua solicitacao foi executada.
+                             Em até 24h o técnico irá até sua residencia.
+                             ID: ${res.data.id}
+                             DATA SOLICITACAO: ${dataFormatada}
+                             CIDADE: ${cidade.name}
+                            `
                         ];
 
-                        finalizado(user, mensagem, cidade)
+                        finalizado(user, mensagem[0], cidade)
 
                     }
                 }).catch((err) => {
@@ -109,10 +110,7 @@ function execute(user, msg, nome, client, message) {
     }
 
     function finalizado(contato, mensagem, cidade) {
-        for (let index = 0; index < mensagem.length; index++) {
-            const element = mensagem[index];
-            console.log(element)
-            client.sendText(contato, element)
+        client.sendText(contato, mensagem)
             .then((res) => {
                 //console.log(res.to._serialized)
                 client.forwardMessages(
@@ -123,8 +121,8 @@ function execute(user, msg, nome, client, message) {
             .catch((err) => {
                 console.log(err)
             })
-        }
-    
+
+
 
     }
 

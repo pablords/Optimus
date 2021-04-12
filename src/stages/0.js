@@ -34,7 +34,7 @@ function execute(user, msg, contato) {
     return [
         menu,
         `Olá ${contato}, ${time}\n
-    Sou o atendente de suporte 🤖 virtual da Vivo.\n\n 
+    Sou o Optimus o atendente de suporte 🤖 virtual da Vivo.\n\n 
     Vou lhe apresentar algumas *OPÇÕES* de atendimento\n\n`,
     ];
 }
