@@ -27,19 +27,19 @@ function execute(user, msg, contato, client, message) {
     switch (message.type) {
         case "ptt":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opções",
                 `${contato}, Sou um robõ e ainda não consigo interpretar audios..`,
             ]
             break;
         case "video":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opções",
                 `${contato}, Sou um robõ e ainda não consigo interpretar videos..`,
             ]
             break;
         case "image":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opções",
                 `${contato}, Sou um robõ e ainda não consigo interpretar imagens..`,
             ]
             break;
@@ -76,14 +76,14 @@ function execute(user, msg, contato, client, message) {
         case db[user].cpf[0].document:
             db[user].stage = 6;
             return [
-                "```Digite uma das opcoes ou * para retornar ao menu inicial```",
+                "```Digite uma das opcões ou * para retornar ao menu inicial```",
                 cidade
             ];
             break
 
         default:
             return [
-                "dados nao conferem, por gentileza digite corretamente o *CPF* do titular"
+                "dados não conferem, por gentileza digite corretamente o *CPF* do titular"
             ];
             break;
     }

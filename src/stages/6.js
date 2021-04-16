@@ -32,19 +32,19 @@ function execute(user, msg, nome, client, message) {
     switch (message.type) {
         case "ptt":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opções",
                 `${contato}, Sou um robõ e ainda não consigo interpretar audios..`,
             ]
             break;
         case "video":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opções",
                 `${contato}, Sou um robõ e ainda não consigo interpretar videos..`,
             ]
             break;
         case "image":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opções",
                 `${contato}, Sou um robõ e ainda não consigo interpretar imagens..`,
             ]
             break;
@@ -85,7 +85,7 @@ function execute(user, msg, nome, client, message) {
             description: db[user].subMenu[0].description
         }
         client.stopTyping(user);
-        client.sendText(user, `Aguarde ${nome}, já estou solicitando um atendimento Técnico para voce...`)
+        client.sendText(user, `Aguarde ${nome}, já estou solicitando um atendimento Técnico para você...`)
             .then((res) => {
                 sendClient(data, cidades[msg])
             })
@@ -112,37 +112,23 @@ function execute(user, msg, nome, client, message) {
                         var year = data.getFullYear();
                         var hora = data.getHours();          // 0-23
                         var min = data.getMinutes();
-<<<<<<< HEAD
                         let dataFormatada = `${day}/${month}/${year} ${hora}:${min}`;
 
                    
 
                         const mensagem = [
-                            `Pronto ${nome}, sua solicitacao foi executada.
-                             Em até 24h o técnico irá até sua residencia.\n
+                            `Pronto ${nome}, sua solicitacão foi executada.
+                             Em até 24h o técnico irá até sua residência.\n
                              ID: ${res.data.id}\n
                              DATA SOLICITACAO: ${dataFormatada}\n
                              CIDADE: ${cidade.name}
                              `
-=======
-                        var seg = data.getSeconds();
-                        let dataFormatada = `${day}/${month}/${year} ${hora}:${min}${seg}`;
-
-                        const mensagem = [
-                            `Pronto ${nome}, sua solicitacao foi executada.
-                             Em até 24h o técnico irá até sua residencia.
-                             ID: ${res.data.id}
-                             DATA SOLICITACAO: ${dataFormatada}
-                             CIDADE: ${cidade.name}
-                            `
->>>>>>> 724feeb42770759d2c2f231b50056c34f0d72bc6
                         ];
-
+                        
                         finalizado(user, mensagem[0], cidade)
 
                     }
                 }).catch((err) => {
-                    client.startTyping(user);
                     db[user] = {
                         stage: 0,
                         menu: [],
@@ -154,11 +140,11 @@ function execute(user, msg, nome, client, message) {
                     console.log(err)
               
                     const erro = [
-                        `Olá ${cidade.supervisor}, o cliente ${nome} - ${user.substring(2, 12)} da cidade ${cidade.name}entrou em contato mas nao foi possivel abrir um atendimento`
+                        `Olá ${cidade.supervisor}, o cliente ${nome} - ${user.substring(2, 12)} da cidade ${cidade.name}entrou em contato mas não foi possivel abrir um atendimento`
                     ]
-                    client.stopTyping(user);
+  
                     client.sendText(cidade.contato, erro[0])
-                    client.sendText(user, "Enviamos sua solicitacao para o supervisor responsavel e logo entraremos em contato.")
+                    client.sendText(user, "Enviamos sua solicitacão para o supervisor responsável e logo entraremos em contato.")
                 })
 
         }
@@ -167,6 +153,7 @@ function execute(user, msg, nome, client, message) {
     }
 
     function finalizado(contato, mensagem, cidade) {
+        console.log(user, mensagem[0], cidade)
         client.sendText(contato, mensagem)
             .then((res) => {
                 client.forwardMessages(
@@ -177,11 +164,6 @@ function execute(user, msg, nome, client, message) {
             .catch((err) => {
                 console.log(err)
             })
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 724feeb42770759d2c2f231b50056c34f0d72bc6
 
     }
 

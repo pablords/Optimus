@@ -28,19 +28,19 @@ function execute(user, msg, contato, client, message) {
     switch (message.type) {
         case "ptt":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opções",
                 `${contato}, Sou um robõ e ainda não consigo interpretar audios..`,
             ]
             break;
         case "video":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opções",
                 `${contato}, Sou um robõ e ainda não consigo interpretar videos..`,
             ]
             break;
         case "image":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opções",
                 `${contato}, Sou um robõ e ainda não consigo interpretar imagens..`,
             ]
             break;
@@ -72,7 +72,7 @@ function execute(user, msg, contato, client, message) {
     if (msg >= "") {
         db[user].cpf.push({ document: msg })
         db[user].stage = 5;
-        return ["por gentileza, confirme o *CPF* ou numero da *LINHA* do titular"];
+        return ["por gentileza, confirme o *CPF* ou número da *LINHA* do titular"];
     } 
 
 

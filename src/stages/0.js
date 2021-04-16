@@ -49,11 +49,7 @@ function execute(user, msg, contato, client) {
     return [
         menu,
         `Olá ${contato}, ${time}\n
-<<<<<<< HEAD
-    Meu nome é Optimus sou o robõ 🤖 virtual da Vivo Leste.\n\n 
-=======
-    Sou o Optimus o atendente de suporte 🤖 virtual da Vivo.\n\n 
->>>>>>> 724feeb42770759d2c2f231b50056c34f0d72bc6
+    Meu nome é Optimus sou o robõ 🤖 virtual da Vivo Leste MG.\n\n 
     Vou lhe apresentar algumas *OPÇÕES* de atendimento\n\n`,
         `Inicio do atendimento: ${db[user].time[0].inicio}`,
     ];

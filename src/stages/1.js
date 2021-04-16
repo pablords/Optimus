@@ -30,19 +30,19 @@ function execute(user, msg, contato, client, message) {
     switch (message.type) {
         case "ptt":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opcões",
                 `${contato}, Sou um robõ e ainda não consigo interpretar audios..`,
             ]
             break;
         case "video":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opcões",
                 `${contato}, Sou um robõ e ainda não consigo interpretar videos..`,
             ]
             break;
         case "image":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opcões",
                 `${contato}, Sou um robõ e ainda não consigo interpretar imagens..`,
             ]
 
@@ -59,7 +59,7 @@ function execute(user, msg, contato, client, message) {
     }
 
 
-    let subMenu = " Digite o numero que representa seu problema\n\n";
+    let subMenu = "Digite o número que representa seu problema:\n\n";
     Object.keys(sub[msg]).forEach((value) => {
         let element = sub[msg];
         subMenu += `[${value}] - ${element[value].name}   ${element[value].description} \n`;

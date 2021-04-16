@@ -28,19 +28,19 @@ function execute(user, msg, contato, client, message) {
     switch (message.type) {
         case "ptt":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opcões",
                 `${contato}, Sou um robõ e ainda não consigo interpretar audios..`,
             ]
             break;
         case "video":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opcões",
                 `${contato}, Sou um robõ e ainda não consigo interpretar videos..`,
             ]
             break;
         case "image":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opcões",
                 `${contato}, Sou um robõ e ainda não consigo interpretar imagens..`,
             ]
             break;
@@ -77,7 +77,7 @@ function execute(user, msg, contato, client, message) {
             case "INTERNET":
                 db[user].subMenu.push(sub[select.id][msg])
                 return [
-                    "digite [S] para sim e [N] para nao",
+                    "Digite [S] para Sim e [N] para Não",
                     "Você deseja receber dicas para um bom funcionamento de sua Internet?"
                 ]
 
@@ -85,15 +85,16 @@ function execute(user, msg, contato, client, message) {
             case "TV":
                 db[user].subMenu.push(sub[select.id][msg])
                 return [
-                    "digite [S] para sim e [N] para nao",
+                    "Digite [S] para Sim e [N] para Não",
                     "Você deseja receber dicas para um bom funcionamento de sua TV?"
                 ]
                 break;
             case "LINHA":
+                db[user].stage = 3;
                 db[user].subMenu.push(sub[select.id][msg])
                 return [
                     "```Digite # para confirmar ou * para retornar ao menu inicial```",
-                    `Voce selecionou a opcao *${select.name} - ${sub[select.id][msg].name}*`,
+                    `Você selecionou a opcão *${select.name} - ${sub[select.id][msg].name}*`,
                 ];
                 break;
 
@@ -105,7 +106,7 @@ function execute(user, msg, contato, client, message) {
         db[user].stage = 3;
         return [
             "```Digite # para confirmar ou * para retornar ao menu inicial```",
-            `Voce selecionou a opcao *${select.name} - ${db[user].subMenu[0].name}*`,
+            `Você selecionou a opcão  *${select.name} - ${db[user].subMenu[0].name}*`,
         ];
     }
 
@@ -116,13 +117,13 @@ function execute(user, msg, contato, client, message) {
 
             client.startTyping(user);
             client.sendFile(user,
-                'src/assets/DicasWI-FI.mp4',
-                'DicasWI-FI.mp4',
-                'Dicas wi-fi'
+                'src/assets/DicasWIFI.mp4',
+                'DicasWIFI',
+                'Dicas w-fi'
             )
                 .then(() => {
                     client.sendText(user,
-                        `Voce selecionou a opcao *${select.name} - ${db[user].subMenu[0].name}*
+                        `Voce selecionou a opção *${select.name} - ${db[user].subMenu[0].name}*
                     Digite # para confirmar ou * para retornar ao menu inicial`
                     )
 
@@ -141,12 +142,12 @@ function execute(user, msg, contato, client, message) {
             client.startTyping(user);
             client.sendFile(user,
                 'src/assets/DicasTVFibra.pdf',
-                'DicasTVFibra.pdf',
+                'DicasTVFibra',
                 'Dicas Tv'
             )
                 .then(() => {
                     client.sendText(user,
-                        `Voce selecionou a opcao *${select.name} - ${db[user].subMenu[0].name}*
+                        `Você selecionou a opcao *${select.name} - ${db[user].subMenu[0].name}*
                         Digite # para confirmar ou * para retornar ao menu inicial`
                     )
 

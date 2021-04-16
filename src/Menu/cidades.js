@@ -25,7 +25,7 @@ const cidade = {
     },
     5: {
       id: 5,
-      name: "JOAO MONLEVADE",
+      name: "JOÃO MONLEVADE",
       supervisor: "JOAO BATISTA",
       contato: "553199895086@c.us",
     },
@@ -33,7 +33,7 @@ const cidade = {
       id: 6,
       name: "GOVERNADOR VALADARES",
       supervisor: "KALISTON",
-      contato: "553399228266@c.us",
+      contato: "553399197626@c.us",
     },
     7: {
       id: 7,

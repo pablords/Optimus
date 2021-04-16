@@ -27,19 +27,19 @@ function execute(user, msg, contato, client, message) {
     switch (message.type) {
         case "ptt":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opcões",
                 `${contato}, Sou um robõ e ainda não consigo interpretar audios..`,
             ]
             break;
         case "video":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opcões",
                 `${contato}, Sou um robõ e ainda não consigo interpretar videos..`,
             ]
             break;
         case "image":
             return [
-                "Por gentileza selecione uma das opcoes",
+                "Por gentileza selecione uma das opcões",
                 `${contato}, Sou um robõ e ainda não consigo interpretar imagens..`,
             ]
             break;
@@ -71,7 +71,7 @@ function execute(user, msg, contato, client, message) {
         case "#":
             db[user].stage = 4;
             return [
-                "por gentileza, informe o *CPF* ou numero da *LINHA* do titular"
+                "por gentileza, informe o *CPF* ou número da *LINHA* do titular"
             ];
             break;
         default:
