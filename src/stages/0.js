@@ -44,11 +44,16 @@ function execute(user, msg, contato, client) {
 
     });
 
-
+    var nomeCliente 
+    if(contato == "undefined"){
+      nomeCliente = ""
+    }else{
+        nomeCliente = contato
+    }
 
     return [
         menu,
-        `Olá ${contato}, ${time}\n
+        `Olá ${nomeCliente}, ${time}\n
     Meu nome é Optimus sou o robõ 🤖 virtual da Vivo Leste MG.\n\n 
     Vou lhe apresentar algumas *OPÇÕES* de atendimento\n\n`,
         `Inicio do atendimento: ${db[user].time[0].inicio}`,
