@@ -9,8 +9,7 @@
     "express": "^4.17.1",
     "mysql2": "^2.2.5",
     "node-sass": "^5.0.0",
-    "puppeteer": "^8.0.0",
-    "venom-bot": "^3.0.10"
+    "venom-bot": "^3.0.18"
   },
   "scripts": {
     "start": "node index.js"

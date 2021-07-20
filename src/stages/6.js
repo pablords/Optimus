@@ -23,7 +23,7 @@ function execute(user, msg, nome, client, message) {
             time: []
         };
         return [
-            `${contato} o seu atendimento foi finalizado pois não houve ação sua no periodo de 5 minutos\n
+            `${nome} o seu atendimento foi finalizado pois não houve ação sua no periodo de 5 minutos\n
             Caso queira abrir um novo atendimento, digite [#]`
         ]
     }
@@ -33,19 +33,19 @@ function execute(user, msg, nome, client, message) {
         case "ptt":
             return [
                 "Por gentileza selecione uma das opções",
-                `${contato}, Sou um robõ e ainda não consigo interpretar audios..`,
+                `${nome}, Sou um robõ e ainda não consigo interpretar audios..`,
             ]
             break;
         case "video":
             return [
                 "Por gentileza selecione uma das opções",
-                `${contato}, Sou um robõ e ainda não consigo interpretar videos..`,
+                `${nome}, Sou um robõ e ainda não consigo interpretar videos..`,
             ]
             break;
         case "image":
             return [
                 "Por gentileza selecione uma das opções",
-                `${contato}, Sou um robõ e ainda não consigo interpretar imagens..`,
+                `${nome}, Sou um robõ e ainda não consigo interpretar imagens..`,
             ]
             break;
 
@@ -75,7 +75,7 @@ function execute(user, msg, nome, client, message) {
 
     if (cidades[msg]) {
         client.startTyping(user);
-        const data = {
+        const dados = {
             name: nome,
             mobilePhone: user,
             cpf: db[user].cpf[0].document,
@@ -87,14 +87,14 @@ function execute(user, msg, nome, client, message) {
         client.stopTyping(user);
         client.sendText(user, `Aguarde ${nome}, já estou solicitando um atendimento Técnico para você...`)
             .then((res) => {
-                sendClient(data, cidades[msg])
+                sendClient(dados, cidades[msg], user)
             })
 
 
 
 
-        async function sendClient(data, cidade) {
-            await Api.post('/whats-app/store', data)
+        async function sendClient(dados, cidade, user) {
+            await Api.post('/whats-app/store', dados)
                 .then((res) => {
                     if (res.status == 200) {
                         db[user] = {
@@ -106,15 +106,15 @@ function execute(user, msg, nome, client, message) {
                             time: []
                         };
 
-                        let data = new Date(res.data.created_at);
-                        var day = data.getDate();
-                        var month = data.getMonth() + 1;
-                        var year = data.getFullYear();
-                        var hora = data.getHours();          // 0-23
-                        var min = data.getMinutes();
+                        const date = new Date(res.data.created_at);
+                        var day = date.getDate();
+                        var month = date.getMonth() + 1;
+                        var year = date.getFullYear();
+                        var hora = date.getHours();          // 0-23
+                        var min = date.getMinutes();
                         let dataFormatada = `${day}/${month}/${year} ${hora}:${min}`;
 
-                   
+
 
                         const mensagem = [
                             `Pronto ${nome}, sua solicitacão foi executada.
@@ -124,7 +124,7 @@ function execute(user, msg, nome, client, message) {
                              CIDADE: ${cidade.name}
                              `
                         ];
-                        
+
                         finalizado(user, mensagem[0], cidade)
 
                     }
@@ -138,13 +138,13 @@ function execute(user, msg, nome, client, message) {
                         time: []
                     };
                     console.log(err)
-              
+
                     const erro = [
-                        `Olá ${cidade.supervisor}, o cliente ${nome} - ${user.substring(2, 12)} da cidade ${cidade.name}entrou em contato mas não foi possivel abrir um atendimento`
+                        `Olá ${cidade.supervisor}, o cliente ${nome} - ${user.substring(2, 12)} da cidade ${cidade.name} entrou em nome mas não foi possivel abrir um atendimento`
                     ]
-  
-                    client.sendText(cidade.contato, erro[0])
-                    client.sendText(user, "Enviamos sua solicitacão para o supervisor responsável e logo entraremos em contato.")
+
+                    client.sendText(cidade.nome, erro[0])
+                    client.sendText(user, "Enviamos sua solicitacão para o supervisor responsável e logo entraremos em nome.")
                 })
 
         }
@@ -152,9 +152,8 @@ function execute(user, msg, nome, client, message) {
 
     }
 
-    function finalizado(contato, mensagem, cidade) {
-        console.log(user, mensagem[0], cidade)
-        client.sendText(contato, mensagem)
+    function finalizado(user, mensagem, cidade) {
+        client.sendText(user, mensagem)
             .then((res) => {
                 client.forwardMessages(
                     cidade.contato,
